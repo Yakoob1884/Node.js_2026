@@ -4,7 +4,7 @@
 
 // Rule: Use strict equality checks: === or !==
 
-// node <file name> i terminal for at køre koden
+// node <file name> in terminal to run code
 
 // console.log("Adam");
 
