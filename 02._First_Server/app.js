@@ -3,11 +3,20 @@ const app = express();
 
 // const app = require('express')();
 
-// Task: Create a route for the endpoint / which returns a greeting
+// stay on top
+app.use(express.json())
+
+console.log(__dirname)
+
 
 app.get('/', (req, res) => {
-    res.send({ data: "Greetings my friends :)"})
+                                // trailing slash - /slash at the end
+    res.sendFile(__dirname + '/index.html')
 });
+
+app.get('/xss', (req, res) => {
+    res.sendFile(__dirname + '/xss.html')
+})
 
 // callback function: a function reference provided as an argument with the posibility (perhaps) og being called later
         
@@ -32,9 +41,25 @@ app.get('/beers/:beerType/:amount', (req, res) => {
 });
 
 
-app.get('/bars/forgottenItems', (req, res) =>{
+app.get('/bars/forgottenItems', (req, res) => {
     console.log(req.query);
     res.send({ data: req.query});
 });
 
+
+app.post('/dictators', (req, res) => {
+    console.log(req.body);
+    res.send({ data : req.body});
+})
+
+
+// Task: Create a path for dictators
+
+app.patch('/dictators/:name', (req, res) => {
+    res.send({ data : `You have turned the great dictator - ${req.params.name} - benevolent for life`})
+})
+
+
+
+// At the bottom
 app.listen(8080);
